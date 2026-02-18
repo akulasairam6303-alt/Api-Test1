@@ -1,0 +1,396 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 600px;
+  max-width: 95%;
+  margin: 20px auto;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+}
+
+.search {
+  width: 100%;
+  padding: 12px 12px 12px 42px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0b62f7;
+}
+
+
+.brand {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  color: #7b2ff7;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.signupPage {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #7b2ff7,#f107a3);
+}
+
+
+.signupBox {
+  width: 380px;
+  padding: 32px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+}
+
+
+.signupBox input {
+  padding: 10px;
+  width: 100%;
+}
+
+.primaryBtn {
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+
+.signupBox h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.signupBox input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.signupBox input:focus {
+  outline: none;
+  border-color: #7b2ff7;
+}
+
+
+.inputIcon {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px;
+  background: #fff;
+}
+
+.inputIcon svg {
+  color: #666;
+  font-size: 16px;
+}
+
+.inputIcon input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+}
+
+.primaryBtn {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg,#7b2ff7,#2575fc);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.linkBtn {
+  border: none;
+  background: none;
+  color: #7b2ff7;
+  cursor: pointer;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 260px;
+  text-align: center;
+}
+
+.popup.success {
+  border-left: 6px solid green;
+}
+
+.popup.error {
+  border-left: 6px solid red;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.logoutContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 50px;
+}
+
+.logoutBtn {
+  padding: 12px 26px;
+  border: none;
+  background: #e11d48;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logoutBtn:hover {
+  opacity: 0.9;
+}
+
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 20px;
+  background: #f9f9fa;
+}
+
+.filter-option {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.clear-btn {
+  margin-top: 15px;
+  padding: 10px;
+  width: 120px;
+  border: none;
+  background: #d9363e;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.main {
+  flex: 1;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 260px);
+  align-items: start;
+  gap: 30px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.product-card {
+  width: 260px;
+  background: #cb95d6;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: auto;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.name {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.maker {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.cost {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0;
+  color: #e01515;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.add-btn {
+  background: #43a0fd;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: #e5e7eb;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.discount {
+  background: #43a0fd;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.fav {
+  color: #ef4444;
+  cursor: pointer;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #e5e7eb;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+}
+
+
+@media (max-width: 1100px) {
+  .main {
+    grid-template-columns: repeat(2, 260px);
+  }
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+}
+
