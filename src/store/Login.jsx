@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./authSlice";
 import { FaLock, FaEnvelope } from "react-icons/fa";
 
-export default function Login({ goHome, goSignup }) {
+export default function Login({ goSignup }) {
   const dispatch = useDispatch();
   const { error } = useSelector(s => s.auth);
 
