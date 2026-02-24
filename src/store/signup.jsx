@@ -35,7 +35,7 @@ export default function Signup({ goLogin }) {
     <div className="signupPage">
       <form className="signupBox" onSubmit={submit}>
 
-        <h1 className="brand">ECOM</h1>
+        <h1 className="brand">ECOMMERCE</h1>
         <p className="subtitle">
           Create your shopping account
         </p>
