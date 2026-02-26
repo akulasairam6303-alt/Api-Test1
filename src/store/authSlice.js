@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-/* ============================= */
-/*      LOCAL STORAGE SETUP      */
-/* ============================= */
 
 const AUTH_KEY = "auth_user";
 
