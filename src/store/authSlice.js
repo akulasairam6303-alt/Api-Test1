@@ -1,27 +1,54 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+/* ============================= */
+/*      LOCAL STORAGE SETUP      */
+/* ============================= */
+
+const AUTH_KEY = "auth_user";
+
+const loadUser = () => {
+  try {
+    const data = localStorage.getItem(AUTH_KEY);
+    return data ? JSON.parse(data) : null;
+  } catch {
+    return null;
+  }
+};
+
+const saveUser = user => {
+  localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+};
+
+const clearUser = () => {
+  localStorage.removeItem(AUTH_KEY);
+};
+
+/* ============================= */
+/*         SIGNUP THUNK          */
+/* ============================= */
+
 export const signupUser = createAsyncThunk(
   "auth/signupUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword,
-        joinAsSeller: true
-      };
-
-      await axios.post(
+      const res = await axios.post(
         "http://65.0.29.192:5000/api/auth/signup",
-        payload,
-        { headers: { "Content-Type": "application/json" } }
+        {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+          joinAsSeller: true
+        },
+        {
+          headers: { "Content-Type": "application/json" }
+        }
       );
 
-      return payload;
+      return res.data;
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.message || "Signup failed"
@@ -30,29 +57,41 @@ export const signupUser = createAsyncThunk(
   }
 );
 
+/* ============================= */
+/*          LOGIN THUNK          */
+/* ============================= */
+
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, { rejectWithValue }) => {
     try {
-      await axios.post(
+      const res = await axios.post(
         "http://65.0.29.192:5000/api/auth/login",
         credentials,
-        { headers: { "Content-Type": "application/json" } }
+        {
+          headers: { "Content-Type": "application/json" }
+        }
       );
 
-      return { email: credentials.email };
+      // Expecting backend to return user + token
+      return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.message || "Invalid credentials"
+        err.response?.data?.message ||
+          "Invalid credentials"
       );
     }
   }
 );
 
+/* ============================= */
+/*           SLICE               */
+/* ============================= */
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
+    user: loadUser(), // restore session
     loading: false,
     error: null,
     success: null
@@ -63,6 +102,7 @@ const authSlice = createSlice({
       state.user = null;
       state.error = null;
       state.success = null;
+      clearUser();
     },
 
     clearMessages: state => {
@@ -74,32 +114,41 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      // signup
+      /* -------- SIGNUP -------- */
+
       .addCase(signupUser.pending, state => {
         state.loading = true;
         state.error = null;
         state.success = null;
       })
+
       .addCase(signupUser.fulfilled, state => {
         state.loading = false;
         state.success = "Signup successful";
       })
+
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
 
-      // login
+      /* -------- LOGIN -------- */
+
       .addCase(loginUser.pending, state => {
         state.loading = true;
         state.error = null;
         state.success = null;
       })
+
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+
+        saveUser(action.payload); // persist session
+
         state.success = "Login successful";
       })
+
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
@@ -107,5 +156,7 @@ const authSlice = createSlice({
   }
 });
 
-export const { logout, clearMessages } = authSlice.actions;
+export const { logout, clearMessages } =
+  authSlice.actions;
+
 export default authSlice.reducer;

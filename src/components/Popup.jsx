@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function Popup({ message, type, onClose }) {
+function Popup({ message, type, onClose }) {
   if (!message) return null;
 
   return (
@@ -12,3 +10,5 @@ export default function Popup({ message, type, onClose }) {
     </div>
   );
 }
+
+export default Popup;
