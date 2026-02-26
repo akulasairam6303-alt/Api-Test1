@@ -63,7 +63,6 @@ export const loginUser = createAsyncThunk(
         }
       );
 
-      // Expecting backend to return user + token
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -101,7 +100,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      /*SIGNUP*/
+
 
       .addCase(signupUser.pending, state => {
         state.loading = true;
@@ -119,7 +118,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      /*LOGIN*/
+      
 
       .addCase(loginUser.pending, state => {
         state.loading = true;
