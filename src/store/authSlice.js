@@ -19,9 +19,6 @@ const clearUser = () => {
   localStorage.removeItem(AUTH_KEY);
 };
 
-/* ============================= */
-/*         SIGNUP THUNK          */
-/* ============================= */
 
 export const signupUser = createAsyncThunk(
   "auth/signupUser",
@@ -52,9 +49,7 @@ export const signupUser = createAsyncThunk(
   }
 );
 
-/* ============================= */
-/*          LOGIN THUNK          */
-/* ============================= */
+
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -79,14 +74,11 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-/* ============================= */
-/*           SLICE               */
-/* ============================= */
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: loadUser(), // restore session
+    user: loadUser(), 
     loading: false,
     error: null,
     success: null
@@ -109,7 +101,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      /* -------- SIGNUP -------- */
+      /*SIGNUP*/
 
       .addCase(signupUser.pending, state => {
         state.loading = true;
@@ -127,7 +119,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      /* -------- LOGIN -------- */
+      /*LOGIN*/
 
       .addCase(loginUser.pending, state => {
         state.loading = true;
