@@ -130,7 +130,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
 
-        saveUser(action.payload); // persist session
+        saveUser(action.payload); 
 
         state.success = "Login successful";
       })
